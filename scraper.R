@@ -10,5 +10,7 @@ req <- request("https://newsapi.org/v2/everything") |>
 resp <- req_perform(req)
 df <- resp_body_json(resp)
 
+
+this_datetime <- lubridate::ymd(Sys.Date())
 exportJSON <- jsonlite::toJSON(df)
-write(exportJSON, glue::glue("logs/log.json"))
+write(exportJSON, glue::glue("data/{this_datetime}.json"))
